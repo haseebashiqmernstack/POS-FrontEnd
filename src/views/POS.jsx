@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './style.css';
-import {Button, Card, CardActionArea, CardContent, CardMedia, TextField,Typography} from '@mui/material';
+import {alertTitleClasses, Button, Card, CardActionArea, CardContent, CardMedia, TextField,Typography} from '@mui/material';
 import {useDispatch,useSelector} from 'react-redux';
 import { getCatagory } from '../Redux/Actions/Catagory.Action';
 import Cart from '../components/cart/cart.comp';
@@ -17,6 +17,9 @@ const POS=()=>{
     },[])
     const findByIdProduct=(id)=>{
       dispatch(getProducts(id));
+    }
+    const addProductToCart=(id)=>{
+        alert(id);
     }
     return (<>
            <div className='main-container'>
@@ -37,7 +40,7 @@ const POS=()=>{
                    </div>
                    <div className="product-cards">
                      {
-                        product.product.map(pro=> <Products prod={pro}/>)
+                        product.product.map(pro=> <Products prod={pro} addProductToCart={addProductToCart}/>)
                      }
 
                    </div>
