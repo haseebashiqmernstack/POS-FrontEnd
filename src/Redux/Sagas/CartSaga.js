@@ -1,6 +1,6 @@
 import {takeEvery,all,put,fork} from 'redux-saga/effects';
 import { ADD_CART, ADD_CART_SUCCESS, REMOVE_ITEM, 
-    REMOVE_ITEM_SUCCESS, INCREAMENT_ITEM, INCREAMENT_ITEM_SUCCESS, DECREAMENT_ITEM, DECREAMENT_ITEM_SUCCESS } from '../Action.Types/constant.type';
+    REMOVE_ITEM_SUCCESS, INCREAMENT_ITEM, INCREAMENT_ITEM_SUCCESS, DECREAMENT_ITEM, DECREAMENT_ITEM_SUCCESS, REMOVE_CART, REMOVE_CART_SUCCESS } from '../Action.Types/constant.type';
 
 function* AddToCart()
 {
@@ -26,12 +26,19 @@ function* DecreamentItem()
         yield put({type:DECREAMENT_ITEM_SUCCESS,payload:payload.payload});
     })
 }
+function* RemoveCart()
+{
+    yield takeEvery(REMOVE_CART,function*(){
+        yield put({type:REMOVE_CART_SUCCESS,payload:''});
+    })
+}
 
 export default function* CartSaga(){
     yield all([
         fork(AddToCart),
         fork(RemoveCartItem),
         fork(IncreamentItem),
-        fork(DecreamentItem)
+        fork(DecreamentItem),
+        fork(RemoveCart)
     ])
 }

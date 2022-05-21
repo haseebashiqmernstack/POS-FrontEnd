@@ -15,6 +15,10 @@ const POS=()=>{
     const product=useSelector(state=>state.Product);
     const cart=useSelector(state=>state.Cart);
     const [price,setPrice]=useState(0);
+    const [filterCatagory,setFilterCatagory]=useState([]);
+    const [filterProduct,setFilterProduct]=useState([]);
+    const [val,setVal]=useState('');
+    const [proVal,setProVal]=useState('');
     useEffect(()=>{
         // alert('dhh')
         dispatch(getCatagory())
@@ -33,26 +37,48 @@ const POS=()=>{
         // alert(item);
         dispatch(addToCart(item));
     }
+    const handleSearch=(e)=>{
+        setVal(e.target.value);
+        const newList=catagory.catagory.filter((cata)=>{
+               return Object.values(cata)
+               .join(" ")
+               .toLowerCase()
+               .includes(val.toLowerCase());
+        })
+        setFilterCatagory(newList);
+    }
+    const productHandleSearch=(e)=>{
+        setProVal(e.target.value);
+        const productList=product.product.filter(prod=>{
+            return Object.values(prod)
+            .join("")
+            .toLowerCase()
+            .includes(proVal.toLowerCase())
+        })
+         setFilterProduct(productList);
+    }
     return (<>
            <div className='main-container'>
                <div className="catagory-panel">
                    <div className="search-bar">
-                   <TextField variant='standard' label='Search product...' className='pro-search-input' />    
+                   <TextField value={val} onInput={handleSearch} variant='standard' label='Search product...' className='pro-search-input' />    
                    </div>
                    <div className="cat-render">
                       {
-                          catagory.catagory.map(cat=><Catagory cata={cat} findByIdProduct={findByIdProduct}/>)
+                        filterCatagory.length < 1 ?  catagory.catagory.map(cat=><Catagory cata={cat} findByIdProduct={findByIdProduct}/>) : 
+                        filterCatagory.map(cat=><Catagory cata={cat} findByIdProduct={findByIdProduct}/>)
                       }                     
                      
                    </div>
                </div>
                <div className="product-panel">
                    <div className="product-search">
-                        <TextField variant='standard' label='Search product...' className='pro-search-input' />    
+                        <TextField value={proVal} onInput={productHandleSearch} variant='standard' label='Search product...' className='pro-search-input' />    
                    </div>
                    <div className="product-cards">
                      {
-                        product.product.map(pro=> <Products prod={pro} addProductToCart={addProductToCart}/>)
+                       filterProduct.length < 1 ?  product.product.map(pro=> <Products prod={pro} addProductToCart={addProductToCart}/>)
+                       : filterProduct.map(pro=> <Products prod={pro} addProductToCart={addProductToCart}/>)
                      }
 
                    </div>
@@ -60,7 +86,7 @@ const POS=()=>{
                <div className="cal-panel">
  
                      <div className="cal-header">
-                          <Typography variant="h4">Item Cart {cart.totalPrice}</Typography>
+                          <Typography variant="h4">Cart Items {`(${cart.cart.length})`}</Typography>
                     </div>
                      <div className="cal-body">
                          

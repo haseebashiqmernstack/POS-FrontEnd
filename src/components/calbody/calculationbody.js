@@ -14,9 +14,9 @@ const CalculationBody=(props)=>{
                      <p>Total</p>
                  </div>
                  <div className='result-complete'>
-                     <p>{props.price}</p>
+                     <p>${props.price}</p>
                      <p>$5</p>
-                     <p>{totalCalculation()}</p>
+                     <p>${totalCalculation()}</p>
                  </div>
              </div>
     </>)

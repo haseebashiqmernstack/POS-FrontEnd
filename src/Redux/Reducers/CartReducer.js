@@ -1,4 +1,4 @@
-import { ADD_CART_SUCCESS, DECREAMENT_ITEM_SUCCESS, INCREAMENT_ITEM, INCREAMENT_ITEM_SUCCESS, REMOVE_ITEM_SUCCESS } from "../Action.Types/constant.type"
+import { ADD_CART_SUCCESS, DECREAMENT_ITEM_SUCCESS, INCREAMENT_ITEM, INCREAMENT_ITEM_SUCCESS, REMOVE_CART, REMOVE_ITEM_SUCCESS } from "../Action.Types/constant.type"
 
 const initial={
     cart:[],
@@ -43,6 +43,11 @@ switch(action.type)
                              ...state,
                              cart:[...dec_remain,{...state.cart[dec_indexItem],qtys:state.cart[dec_indexItem].qtys-1}]
                     }
+                    case REMOVE_CART:
+                        return {
+                            ...state,
+                            cart:[]
+                        }
 
     default:
         return state;

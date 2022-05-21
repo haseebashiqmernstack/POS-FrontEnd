@@ -172,7 +172,7 @@ html::-webkit-scrollbar-track{
 .cal-body{
     min-height:90vh;
     max-width:100%;
-    border:1px solid blueviolet;
+    /* border:1px solid blueviolet; */
 }
 .cal-header h4{
     margin:10px 0;
