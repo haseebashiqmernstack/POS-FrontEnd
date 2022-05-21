@@ -2,7 +2,7 @@ import React from 'react';
 
 const Products = (props) => {
     return (<>
-     <div className="cards" onClick={()=>props.addProductToCart(props.prod._id)}>
+     <div className="cards" onClick={()=>props.addProductToCart(props.prod)}>
                           <div className="image">
                               <img src={`http://localhost:5000/public/${props.prod.productPictures[0].img}`} alt="" />
                           </div>

@@ -1,0 +1,28 @@
+.cal-container{
+    height:100%;
+    width:100%;
+    border:1px solid green;
+    display: flex;
+    flex-direction: column;
+}
+
+.text-cal{
+    min-height:10%;
+    width:100%;
+    border:1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.result-complete{
+    min-height:10%;
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* border:1px solid green; */
+}
+.result-complete p{
+    margin:5px 0;
+}

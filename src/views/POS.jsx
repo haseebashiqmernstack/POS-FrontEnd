@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import {alertTitleClasses, Button, Card, CardActionArea, CardContent, CardMedia, TextField,Typography} from '@mui/material';
 import {useDispatch,useSelector} from 'react-redux';
@@ -8,18 +8,30 @@ import apiInstance from '../apiHelper/ApiCaller';
 import Catagory from '../components/catagory/catagory.comp';
 import { getProducts } from '../Redux/Actions/Product.Action';
 import Products from '../components/productdetail/product.comp';
+import { addToCart } from '../Redux/Actions/Cart.Action';
 const POS=()=>{
     const dispatch=useDispatch();
     const catagory=useSelector(state=>state.Catagory);
-    const product=useSelector(state=>state.Product)
+    const product=useSelector(state=>state.Product);
+    const cart=useSelector(state=>state.Cart);
+    const [price,setPrice]=useState(0);
     useEffect(()=>{
+        // alert('dhh')
         dispatch(getCatagory())
+       
     },[])
+    useEffect(()=>{
+        // console.log("from useEffect",cart.cart)
+        setPrice(cart.cart.reduce((prev,current)=>{
+            return prev+current.price*current.qtys;
+        },0))
+      })
     const findByIdProduct=(id)=>{
       dispatch(getProducts(id));
     }
-    const addProductToCart=(id)=>{
-        alert(id);
+    const addProductToCart=(item)=>{
+        // alert(item);
+        dispatch(addToCart(item));
     }
     return (<>
            <div className='main-container'>
@@ -48,11 +60,11 @@ const POS=()=>{
                <div className="cal-panel">
  
                      <div className="cal-header">
-                          <Typography variant="h4">Item Cart</Typography>
-                          <Button label="get data" onClick={()=>dispatch(getCatagory())} variant="outlined">Get Data</Button>
-                     </div>
+                          <Typography variant="h4">Item Cart {cart.totalPrice}</Typography>
+                    </div>
                      <div className="cal-body">
-                         <Cart/>
+                         
+                         <Cart price={price}/>
                      </div>
 
                </div>
