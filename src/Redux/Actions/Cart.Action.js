@@ -1,4 +1,5 @@
-import { ADD_CART, INCREAMENT_ITEM, REMOVE_ITEM, DECREAMENT_ITEM, REMOVE_CART } from "../Action.Types/constant.type";
+import { ADD_CART, INCREAMENT_ITEM, REMOVE_ITEM, 
+    DECREAMENT_ITEM, REMOVE_CART,ADD_ORDER } from "../Action.Types/constant.type";
 
 export const addToCart=(product)=>({
     type:ADD_CART,
@@ -22,3 +23,7 @@ export const removedCart=()=>{
         payload:''
     }
 }
+export const addOrder=(order)=>({
+type:ADD_ORDER,
+payload:order
+})

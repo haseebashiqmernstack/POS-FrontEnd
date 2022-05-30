@@ -1,10 +1,10 @@
 import { Button,TextField } from '@mui/material';
 import React from 'react';
 import './cartitem.css';
-
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 const CartItem=(props)=>{
     return (<>
-   <div className='close-card' onClick={()=>props.removeCart(props.items._id)}><button>x</button></div>
+   <div className='close-card' onClick={()=>props.removeCart(props.items._id)}><button style={{display:'flex',justifyContent:'center',alignItems:'center'}}><DeleteOutlineOutlinedIcon/></button></div>
    <div className='cart-containers'>
     
        <div className='img-box'>

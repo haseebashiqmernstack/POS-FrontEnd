@@ -22,7 +22,7 @@ const POS=()=>{
     useEffect(()=>{
         // alert('dhh')
         dispatch(getCatagory())
-       
+       console.log(window.web3)
     },[])
     useEffect(()=>{
         // console.log("from useEffect",cart.cart)

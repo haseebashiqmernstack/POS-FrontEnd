@@ -1,8 +1,9 @@
-import { ADD_CART_SUCCESS, DECREAMENT_ITEM_SUCCESS, INCREAMENT_ITEM, INCREAMENT_ITEM_SUCCESS, REMOVE_CART, REMOVE_ITEM_SUCCESS } from "../Action.Types/constant.type"
+import { ADD_CART_SUCCESS, ADD_ORDER_SUCCESS, DECREAMENT_ITEM_SUCCESS, INCREAMENT_ITEM, INCREAMENT_ITEM_SUCCESS, REMOVE_CART, REMOVE_ITEM_SUCCESS } from "../Action.Types/constant.type"
 
 const initial={
     cart:[],
-    totalPrice:0
+    totalPrice:0,
+    isOrderSaved:false
 }
 
 const CartReducer=(state=initial,action)=>{
@@ -48,6 +49,11 @@ switch(action.type)
                             ...state,
                             cart:[]
                         }
+                        case ADD_ORDER_SUCCESS:
+                            return Object.assign({},{
+                                ...state,
+                                isOrderSaved:true
+                            })
 
     default:
         return state;
